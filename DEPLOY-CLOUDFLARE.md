@@ -94,7 +94,22 @@ npm run deploy:cf
 
 ## 常见问题
 
-### 构建失败
+### 构建失败 `npm error E401` / Incorrect or missing password
+
+原因：`package-lock.json` 里若出现 `packages.aliyun.com` 等**国内私有源**，Cloudflare 无法认证。
+
+解决：仓库已加 `.npmrc` 固定 `registry.npmjs.org`，本地删除 lock 后重装：
+
+```powershell
+Remove-Item package-lock.json
+npm install
+git add package-lock.json .npmrc
+git push
+```
+
+Cloudflare 里**不要**配置错误的 `NPM_TOKEN` 环境变量（没有私有包可删掉）。
+
+### 其它构建失败
 
 - 本地先执行 `npm run build` 确认能通过
 - Cloudflare 构建日志里看 Node 版本，建议 20
