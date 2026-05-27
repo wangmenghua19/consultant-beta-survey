@@ -21,16 +21,22 @@ npm run dev
 - 填写页：http://localhost:5173/
 - 管理页：http://localhost:5173/admin?key=内测管理
 
-## 部署（国内）
+## 部署（国内，推荐）
 
-**请勿使用 Vercel 等国外域名给国内门店访问**（易打不开）。
+**门店不用 VPN**：优先 **[Gitee Pages](./DEPLOY-GITEE.md)**（免费、国内访问较稳）。
 
-1. `npm run build`
-2. 将 `dist/` 上传到 **阿里云 OSS / 腾讯云 COS 静态网站**，或公司 **Nginx**
+```bash
+npm run build:gitee
+# 将 dist 内容部署到 Gitee Pages 分支，见 DEPLOY-GITEE.md
+```
 
-详细步骤见 **[DEPLOY-CN.md](./DEPLOY-CN.md)**（含 OSS/COS/Nginx、SPA 404 配置、链接格式）。
+企业正式环境：**[DEPLOY-CN.md](./DEPLOY-CN.md)**（阿里云 OSS / 腾讯云 COS / Nginx）。
 
-海外临时测试见 [DEPLOY.md](./DEPLOY.md)。GitHub + Render 见 [DEPLOY-RENDER.md](./DEPLOY-RENDER.md)。
+**自有域名（根域名）**：[DEPLOY-DOMAIN.md](./DEPLOY-DOMAIN.md)。
+
+**Cloudflare Pages**：[DEPLOY-CLOUDFLARE.md](./DEPLOY-CLOUDFLARE.md)（连 GitHub 自动部署，可绑自有域名）。
+
+海外测试：[DEPLOY.md](./DEPLOY.md)、[DEPLOY-RENDER.md](./DEPLOY-RENDER.md)（Render 可能需绑卡）。
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/wangmenghua19/consultant-beta-survey)
 

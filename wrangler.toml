@@ -1,0 +1,4 @@
+# Cloudflare Pages（连接 Git 时可选，用于统一构建输出目录）
+name = "consultant-beta-survey"
+compatibility_date = "2024-11-01"
+pages_build_output_dir = "dist"

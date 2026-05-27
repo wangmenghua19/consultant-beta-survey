@@ -6,9 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:gitee": "tsc -b && vite build --mode gitee && node scripts/postbuild-gitee.mjs",
     "preview": "vite preview",
     "pack": "npm run build && powershell -ExecutionPolicy Bypass -File scripts/pack-dist.ps1",
-    "deploy": "npm run build && cd dist && npx vercel deploy --prod --yes"
+    "deploy": "npm run build && cd dist && npx vercel deploy --prod --yes",
+    "deploy:cf": "npm run build && npx wrangler pages deploy dist --project-name=consultant-beta-survey"
   },
   "dependencies": {
     "antd": "^5.24.0",
