@@ -1,4 +1,8 @@
-# Cloudflare Pages（连接 Git 时可选，用于统一构建输出目录）
+# Cloudflare Workers + 静态资源（统一「Workers & Pages」Git 部署）
+# 文档：https://developers.cloudflare.com/workers/static-assets/
 name = "consultant-beta-survey"
 compatibility_date = "2024-11-01"
-pages_build_output_dir = "dist"
+
+[assets]
+directory = "./dist"
+not_found_handling = "single-page-application"

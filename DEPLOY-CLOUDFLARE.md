@@ -6,28 +6,31 @@
 
 ---
 
-## 方式一：连接 GitHub（推荐，自动部署）
+## 方式一：连接 GitHub（Workers & Pages 统一入口）
+
+> 新版控制台里 **Workers 和 Pages 在一起**，没有单独的「只选 Pages」。  
+> 本项目用 **静态资源 + wrangler.toml**（见仓库根目录 `[assets]`）。
 
 ### 1. 登录 Cloudflare
 
 打开 https://dash.cloudflare.com 注册/登录。
 
-### 2. 创建 Pages 项目
+### 2. 创建应用
 
-1. 左侧 **Workers & Pages** → **Create**
-2. 选 **Pages** → **Connect to Git**
-3. 授权 **GitHub**，选择仓库：`wangmenghua19/consultant-beta-survey`
-4. 点击 **Begin setup**
+1. **Workers & Pages** → **创建应用程序** → **连接到 Git**
+2. 仓库：`wangmenghua19/consultant-beta-survey`
+3. 项目名：`consultant-beta-survey`
 
-### 3. 构建配置
+### 3. 构建配置（照此填写）
 
 | 配置项 | 填写 |
 |--------|------|
-| Project name | `consultant-beta-survey`（自定，影响默认域名） |
-| Production branch | `main` |
-| Framework preset | **Vite** 或 **None** |
-| Build command | `npm run build` |
-| Build output directory | `dist` |
+| 构建命令 | `npm run build` |
+| **部署命令** | `npx wrangler deploy` |
+| 非生产分支部署命令 | **留空**（删掉 `wrangler versions upload`） |
+| 路径 / 根目录 | `/` |
+
+**不要**再单独找「输出目录 dist」——由 `wrangler.toml` 里 `[assets] directory = "./dist"` 指定。
 
 **Environment variables（可选）**：
 
@@ -52,7 +55,7 @@ https://consultant-beta-survey.pages.dev/
 | 填写 | `/` |
 | 管理 | `/admin?key=内测管理` |
 
-SPA 路由已靠 `public/_redirects`（构建后进 `dist/_redirects`）处理，**无需再配 Rewrite**。
+SPA 路由由 `wrangler.toml` 的 `not_found_handling = "single-page-application"` 处理（`/admin` 不 404）。
 
 ### 6. 绑定自己的域名（你有域名时）
 
@@ -108,6 +111,13 @@ git push
 ```
 
 Cloudflare 里**不要**配置错误的 `NPM_TOKEN` 环境变量（没有私有包可删掉）。
+
+### deploy 失败 `Missing entry-point to Worker script`
+
+说明 `wrangler.toml` 缺少 `[assets]`。请拉取最新 `main`（已包含 `directory = "./dist"`），并确认：
+
+- 构建命令：`npm run build`
+- 部署命令：`npx wrangler deploy`
 
 ### 其它构建失败
 
