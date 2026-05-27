@@ -32,6 +32,8 @@ npm run dev
 
 海外临时测试见 [DEPLOY.md](./DEPLOY.md)。GitHub + Render 见 [DEPLOY-RENDER.md](./DEPLOY-RENDER.md)。
 
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/wangmenghua19/consultant-beta-survey)
+
 ### 数据存放说明
 
 - 问卷答案保存在**当前浏览器**的 `localStorage` 中

@@ -2,6 +2,21 @@
 
 > Render 服务器在**国外**，国内同事访问可能仍慢或被拦。正式给门店请用 [DEPLOY-CN.md](./DEPLOY-CN.md)。
 
+## 一键部署（最快）
+
+仓库已推送后，用浏览器打开（需登录 Render，建议 GitHub 登录）：
+
+**https://render.com/deploy?repo=https://github.com/wangmenghua19/consultant-beta-survey**
+
+按页面提示连接仓库并创建 Static Site，会自动读取根目录 `render.yaml`。
+
+部署完成后访问：
+
+- 填写：`https://你的服务名.onrender.com/`
+- 管理：`https://你的服务名.onrender.com/admin?key=内测管理`
+
+---
+
 ## 1. 推送到 GitHub
 
 在项目目录：
