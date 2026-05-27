@@ -1,0 +1,12 @@
+# Render Static Site — 连接 GitHub 后自动构建部署
+# https://render.com/docs/static-sites
+services:
+  - type: web
+    name: consultant-beta-survey
+    runtime: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
